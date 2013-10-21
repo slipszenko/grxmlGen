@@ -4,14 +4,15 @@ var szko = szko ? szko : {};
 szko.grxmlGen = (function () {
     "use strict";
 
-    // Private vars
-    var things = [],
-
-
-    createCommandParameterString = function(subRules) {
+    var createCommandParameterString = function(subRules) {
         var grammarString = '<item repeat="1"><one-of>';
         for(var i = 0; i < subRules.length; i++) {
-            grammarString += '<item>' + subRules[i] + '</item>'
+            if(typeof subRules[i] !== "undefined"
+                && typeof subRules[i] === "object") {
+                grammarString += createCommandParameterString(subRules[i]);
+            } else {
+                grammarString += '<item>' + subRules[i] + '</item>'
+            }
         }
         grammarString += '</item></one-of>';
         return grammarString;
@@ -36,7 +37,6 @@ szko.grxmlGen = (function () {
     // Returns a file blob with the grammar rules in
     generateGrammar = function(rules, asString) {
         asString = (typeof asString === "undefined") ? false : true;
-        console.log(rules);
 
         // Start the grammar
         var grammarString = '<grammar mode="voice" xml:lang="en-US" tag-format="semantics/1.0" version="1.0" root="location">';
@@ -44,7 +44,7 @@ szko.grxmlGen = (function () {
 
         grammarString += createCommandString(rules);
 
-        // Add the final string
+        // Add the closing string
         grammarString += '</rule></grammar>';
 
 
@@ -54,6 +54,7 @@ szko.grxmlGen = (function () {
         }
 
         // Return as a blob instead
+
     };
 
 

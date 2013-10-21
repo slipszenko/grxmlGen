@@ -13,6 +13,14 @@ This array:
 ["What", [
     "is the meaning of life",
     "do you want to do today"
+]],
+["How", [
+    "do you", [
+        "dance",
+        "fight",
+        "sleep at night"
+    ],
+    "are you"
 ]]
 ```
 
@@ -21,3 +29,7 @@ should generate a grammar which accepts:
 * "Hello what are you doing"
 * "What is the meaning of life"
 * "What do you want to do today"
+* "How do you dance"
+* "How do you fight"
+* "How do you sleep at night"
+* "How are you"
