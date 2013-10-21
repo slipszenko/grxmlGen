@@ -35,8 +35,8 @@ szko.grxmlGen = (function () {
 
 
     // Returns a file blob with the grammar rules in
-    generateGrammar = function(rules, asString) {
-        asString = (typeof asString === "undefined") ? false : true;
+    generateGrammar = function(rules, asBlob) {
+        asBlob = (typeof asBlob === "undefined") ? false : asBlob;
 
         // Start the grammar
         var grammarString = '<grammar mode="voice" xml:lang="en-US" tag-format="semantics/1.0" version="1.0" root="location">';
@@ -49,12 +49,15 @@ szko.grxmlGen = (function () {
 
 
         // Return as a string if requested
-        if(asString) {
+        if(!asBlob) {
             return grammarString;
         }
 
         // Return as a blob instead
-
+        var grammarParts = [grammarString];
+        var grammarBlob = new Blob(grammarParts, {type : 'application/srgs, application/srgs+xml'});
+        var url = URL.createObjectURL(grammarBlob);
+        return url;
     };
 
 

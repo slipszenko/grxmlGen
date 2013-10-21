@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>grxmlGen Example 1</title>
+
+    <!-- Files for h5pres -->
+    <script src="../../src/grxmlGen.js"></script>
+    <script type="text/javascript">
+        function init() {
+            grammar = szko.grxmlGen.generateGrammar([
+                ["Hello", [
+                    "how are you",
+                    "what are you doing"
+                ]],
+                ["What", [
+                    "is the meaning of life",
+                    "do you want to do today"
+                ]],
+                ["How", [
+                    "do you", [
+                        "dance",
+                        "fight",
+                        "sleep at night"
+                    ],
+                    "are you"
+                ]]
+            ], true);
+            outputElem = document.querySelector("#output");
+            outputElem.href = grammar;
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <a id="output" href="#">View grammar</a>
+</body>
+</html>
