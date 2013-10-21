@@ -47,7 +47,6 @@ szko.grxmlGen = (function () {
         // Add the closing string
         grammarString += '</rule></grammar>';
 
-
         // Return as a string if requested
         if(!asBlob) {
             return grammarString;
